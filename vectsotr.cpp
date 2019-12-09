@@ -11,7 +11,7 @@ void quick(int *a, int start, int finish){
 	int f = finish;
 	//int sr = a[(s + f) / 2];
 	//int sr = a[s];
-	int sr = a[rand() % n];
+	int sr = a[s+rand() % f-s+1];
 	do{
 		while (a[s] < sr)
 			s++;
