@@ -1,14 +1,17 @@
 #include <iostream>
 #include <vector>
 #include "locale.h"
-#define n 10
+#include <cstdlib>
+#include <ctime>
+#define n 1000
 
 using namespace std;
-
 void quick(int *a, int start, int finish){
 	int s = start;
 	int f = finish;
-	int sr = a[(s + f) / 2];
+	//int sr = a[(s + f) / 2];
+	//int sr = a[s];
+	int sr = a[rand() % n];
 	do{
 		while (a[s] < sr)
 			s++;
@@ -32,9 +35,8 @@ void main() {
 	setlocale(LC_CTYPE, "Russian");
 	vector <int> v(n);
 	int *a = &v[0];
-	cout << "введите координаты вектора" << endl;
 	for (int i = 0; i < n; i++) {
-		cin >> v[i];
+		v[i] = rand() % 100;
 	}
 	cout << "исходный вектор имеет координаты" << endl;
 	for (int i = 0; i < n; i++) {
@@ -42,10 +44,16 @@ void main() {
 	}
 	cout << endl;
 	int start = 0;
+	//v[0] = 0;
+	//v[(n - 1) / 2] = 0;
 	int finish = n - 1;
+	int tstart = clock();
 	quick(a, start, finish);
+	int tfinish = clock();
+	int t = (tfinish - tstart);
 	cout << "отсортированный вектор имеет координаты" << endl;
 	for (int i = 0; i < n; i++) {
 		cout << v[i] << " ";
 	}
+	cout << endl << "время сортировки составило " << t << endl;
 }
